@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Prediction Result</h1>
+</header>
+
+<div class="container">
+
+    <div class="result-box">
+
+        <h2>Predicted Price</h2>
+
+        <div class="price">
+            ₦ {{ price }}
+        </div>
+
+        <p>
+            Estimated market price for <strong>{{ commodity }}</strong> in
+            <strong>{{ state }}</strong>, based on the supplied information and
+            the trained machine learning model.
+        </p>
+
+        <a href="/">
+            <button class="again-btn">
+                Predict Again
+            </button>
+        </a>
+
+    </div>
+
+</div>
+
+<footer>
+    Food Price Prediction System
+</footer>
+
+</body>
+</html>

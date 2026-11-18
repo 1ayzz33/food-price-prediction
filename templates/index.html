@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Price Prediction System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Food Price Prediction System</h1>
+    <p>Predict Food Prices in Nigerian Markets</p>
+</header>
+
+<div class="container">
+
+    <h2>Enter Details</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form action="/predict" method="POST">
+
+        <label>Commodity</label>
+        <select name="commodity" required>
+            <option value="">Select Commodity</option>
+            {% for c in commodities %}
+                <option value="{{ c }}">{{ c }}</option>
+            {% endfor %}
+        </select>
+
+        <label>State</label>
+        <select name="state" required>
+            <option value="">Select State</option>
+            {% for s in states %}
+                <option value="{{ s }}">{{ s }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Month (1 - 12)</label>
+        <input type="number" name="month" min="1" max="12" required>
+
+        <label>Fuel Price (₦)</label>
+        <input type="number" name="fuel" step="0.01" min="0" required>
+
+        <label>Inflation Rate (%)</label>
+        <input type="number" name="inflation" step="0.01" min="0" required>
+
+        <label>Rainfall (mm)</label>
+        <input type="number" name="rainfall" step="0.01" min="0" required>
+
+        <button type="submit">
+            Predict Price
+        </button>
+
+    </form>
+
+</div>
+
+<footer>
+    Food Price Prediction Using Machine Learning - <span>© 2026</span>
+</footer>
+
+</body>
+</html>
